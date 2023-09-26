@@ -1,11 +1,11 @@
 /*!
 =========================================================
-* JohnDoe Landing page
+* Aditya Patel Landing page
 =========================================================
 
-* Copyright: 2019 DevCRUD (https://devcrud.com)
-* Licensed: (https://devcrud.com/licenses)
-* Coded by www.devcrud.com
+* Copyright: 2019 Aditya (https://Aditya.com)
+* Licensed: (https://Aditya.com/licenses)
+* Coded by www.Aditya.com
 
 =========================================================
 
@@ -147,4 +147,49 @@ function initMap() {
         }
       ]
     });
+}
+
+
+function downloadResume()
+{
+  // Create a new XMLHttpRequest object
+var xhr = new XMLHttpRequest();
+
+// Configure the GET request for the file
+xhr.open('GET', '/download', true);
+xhr.responseType = 'blob';
+
+// Set up a callback function to handle the response
+xhr.onload = function() {
+    if (xhr.status === 200) {
+        // Request was successful, handle the response here
+        var blob = xhr.response;
+        var filename = 'Aditya_resume.pdf'; // Specify the desired filename
+
+        // Create a temporary link element to trigger the download
+        var a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = filename;
+
+        // Trigger the click event on the link to initiate the download
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up the temporary link element
+        document.body.removeChild(a);
+    } else {
+        // Request failed with an error, handle the error here
+        console.error('Request failed with status: ' + xhr.status);
+    }
+};
+
+// Set up an error handler for network errors
+xhr.onerror = function() {
+    console.error('Network error occurred');
+};
+
+// Send the GET request
+xhr.send();
+
 }
